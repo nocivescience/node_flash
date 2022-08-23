@@ -7,15 +7,14 @@ router.get('/', (req, res) => {
 
 router.post('/register', (req, res) => {
     const { email, password } = req.body;
-    // req.session.my_variable = 'Hello World!';
     req.session.user_data = {email, password};
     req.flash('success', 'Now You are Registered')
     res.redirect('/profile');
 });
 
 router.get('/profile', (req, res) => {
-    // console.log(req.session.my_variable);
     const user = req.session.user_data;
+    console.log(user);
     delete req.session.user_data;
 
     res.render('profile', {
